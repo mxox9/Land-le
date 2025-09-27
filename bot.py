@@ -678,7 +678,7 @@ def admin_callback_router(c):
 import atexit
 def shutdown():
     try:
-    scheduler.shutdown(wait=False)
+        scheduler.shutdown(wait=False)
     except:
         pass
     try:

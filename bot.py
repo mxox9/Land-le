@@ -27,7 +27,7 @@ load_dotenv()
 # === CONFIG ===
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
-ADMIN_IDS_RAW = os.getenv("ADMIN_IDS", "")  # e.g. "6052975324,1234567"
+ADMIN_IDS_RAW = os.getenv("ADMIN_IDS", "6052975324")  # e.g. "6052975324,1234567"
 ADMIN_IDS = [int(x.strip()) for x in ADMIN_IDS_RAW.split(",") if x.strip().isdigit()]
 QR_IMAGE_URL = os.getenv("QR_IMAGE_URL", "https://t.me/prooflelo1/27")
 AUTO_REFUND_INTERVAL = int(os.getenv("AUTO_REFUND_INTERVAL", "300"))  # seconds

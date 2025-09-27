@@ -17,11 +17,11 @@ load_dotenv()
 
 # Configuration from environment variables
 BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGoXnNg90jqvcC1X1fVo_qKV8Y0eHjDAZg')
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
+MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://saifulmolla79088179_db_user:17gNrX0pC3bPqVaG@cluster0.fusvqca.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0')
 ADMIN_IDS = [int(x.strip()) for x in os.getenv('ADMIN_IDS', '6052975324').split(',')]
 CHANNEL_ID = os.getenv('CHANNEL_ID', '@prooflelo1')
-SMM_API_URL = os.getenv('SMM_API_URL', '')
-SMM_API_KEY = os.getenv('SMM_API_KEY', '')
+SMM_API_URL = os.getenv('SMM_API_URL', 'https://mysmmapi.com/api/v2?')
+SMM_API_KEY = os.getenv('SMM_API_KEY', 'a9bbe2f7d1a748b62cf5d1e195d06a165e3cc36d')
 
 # Use your existing deposit API credentials
 AUTODEP_API_KEY = os.getenv('AUTODEP_API_KEY', 'LY81vEV7')

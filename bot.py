@@ -602,33 +602,33 @@ def admin_callback_router(c):
             except Exception as e:
                 bot.send_message(uid, S("❌ Error adding service"))
     elif data == "admin:edit_service":
-        bot.send_message(uid, S("📝 Send service _id on first line, then field|value lines. Example:\n<id>\nname|New Name\nmin_qty|100"))
-        @bot.message_handler(func=lambda m: m.from_user.id==uid)
-        def admin_edit(m):
-            try:
+    bot.send_message(uid, S("📝 Send service _id on first line, then field|value lines. Example:\n<id>\nname|New Name\nmin_qty|100"))
+    @bot.message_handler(func=lambda m: m.from_user.id==uid)
+    def admin_edit(m):
+        try:
             lines = m.text.strip().splitlines()
-                _id = lines[0].strip()
-                updates = {}
-                for ln in lines[1:]:
-                    if "|" in ln:
-                        k,v = ln.split("|",1)
-                        kv = v.strip()
-                        if kv.lower() in ("true","false"):
-                            kv = kv.lower()=="true"
-                        else:
-                            try:
-                                if "." in kv:
-                                    kv = float(kv)
-                                else:
-                                    kv = int(kv)
-                            except:
-                                pass
-                        updates[k.strip()] = kv
-                from bson import ObjectId
-                services_col.update_one({"_id": ObjectId(_id)}, {"$set": updates})
-                bot.send_message(uid, S("✅ Service updated"))
-            except Exception as e:
-                bot.send_message(uid, S("❌ Error updating service"))
+            _id = lines[0].strip()
+            updates = {}
+            for ln in lines[1:]:
+                if "|" in ln:
+                    k,v = ln.split("|",1)
+                    kv = v.strip()
+                    if kv.lower() in ("true","false"):
+                        kv = kv.lower()=="true"
+                    else:
+                        try:
+                            if "." in kv:
+                                kv = float(kv)
+                            else:
+                                kv = int(kv)
+                        except:
+                            pass
+                    updates[k.strip()] = kv
+            from bson import ObjectId
+            services_col.update_one({"_id": ObjectId(_id)}, {"$set": updates})
+            bot.send_message(uid, S("✅ Service updated"))
+        except Exception as e:
+            bot.send_message(uid, S("❌ Error updating service"))
     elif data == "admin:delete_service":
         bot.send_message(uid, S("🗑️ Send service _id to soft-delete (active=false)"))
         @bot.message_handler(func=lambda m: m.from_user.id==uid)

@@ -8,11 +8,11 @@ from pymongo import MongoClient
 import os
 
 # Bot Token
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
+BOT_TOKEN = "8052955693:AAGoXnNg90jqvcC1X1fVo_qKV8Y0eHjDAZg"
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # MongoDB Setup
-MONGO_URI = "mongodb://localhost:27017/"  # Change to your MongoDB URI
+MONGO_URI = "mongodb+srv://saifulmolla79088179_db_user:17gNrX0pC3bPqVaG@cluster0.fusvqca.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0"  # Change to your MongoDB URI
 client = MongoClient(MONGO_URI)
 db = client.telegram_bot
 users_collection = db.users

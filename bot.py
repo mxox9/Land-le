@@ -869,7 +869,7 @@ def process_add_service_id(message):
     """Process service ID and then ask for API URL"""
     user_id = message.chat.id
     
-    if user_id not in admin_states or admin_states[user_id].get("action") != \"adding_service\":
+    if user_id not in admin_states or admin_states[user_id].get("action") != "adding_service":
         return
     
     service_id = message.text.strip()

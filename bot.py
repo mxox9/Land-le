@@ -194,13 +194,12 @@ def place_smm_order(service_id, link, quantity):
         return None
 
 def get_order_status(api_order_id):
-(api_order_id):
     """Get order status from SMM API"""
     try:
         params = {
-            'key': SMM_API_KEY,
-            'action': 'status',
-            'order': api_order_id
+            "key": SMM_API_KEY,
+            "action": "status",
+            "order": api_order_id
         }
         
         response = requests.get(SMM_API_URL, params=params, timeout=10)

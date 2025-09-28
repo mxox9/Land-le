@@ -20,7 +20,7 @@ import re
 load_dotenv()
 
 # Configuration from environment variables
-BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGoXnNg90jqvcC1X1fVo_qKV8Y0eHjDAZg')
+BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGIc2IEETmgTo-MR0czvEhH9nq0QXbv2jc')
 MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://saifulmolla79088179_db_user:17gNrX0pC3bPqVaG@cluster0.fusvqca.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0')
 ADMIN_IDS = [int(x.strip()) for x in os.getenv('ADMIN_IDS', '6052975324').split(',')]
 CHANNEL_ID = os.getenv('CHANNEL_ID', '@prooflelo1')

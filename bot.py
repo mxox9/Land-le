@@ -125,10 +125,10 @@ def verify_payment(amount, transaction_id=None):
 
 
 def place_smm_order(service_id, link, quantity):
-    \"\"\"Place order via SMM API (robust). Accepts either a service ID string or a MongoDB service _id.
+    """Place order via SMM API (robust). Accepts either a service ID string or a MongoDB service _id.
     It prefers service-specific api_url/api_key/service_id when present in the service document.
     Returns order id string on success, or None on failure.
-    \"\"\"
+    """
     try:
         # try to load service document from DB if service_id looks like an ObjectId
         service = None

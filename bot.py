@@ -134,7 +134,7 @@ def place_smm_order(service_id, link, quantity):
         service = None
         try:
             if isinstance(service_id, str) and len(service_id) >= 12:
-                service = services_collection.find_one({\"_id\": ObjectId(service_id)})
+                service = services_collection.find_one({"_id": ObjectId(service_id)})
         except Exception:
             service = None
 

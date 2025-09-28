@@ -71,13 +71,13 @@ user_states = {}
 admin_states = {}
 
 # Image URLs
-WELCOME_IMAGE = "https://t.me/prooflelo1/27"
-SERVICE_IMAGE = "https://t.me/prooflelo1/28"
-DEPOSIT_IMAGE = "https://t.me/prooflelo1/16"
-ACCOUNT_IMAGE = "https://t.me/prooflelo1/28"
-HISTORY_IMAGE = "https://t.me/prooflelo1/16"
+WELCOME_IMAGE = "https://t.me/prooflelo1/135?single"
+SERVICE_IMAGE = "https://t.me/prooflelo1/138?single"
+DEPOSIT_IMAGE = "https://t.me/prooflelo1/136?single"
+ACCOUNT_IMAGE = "https://t.me/prooflelo1/137?single"
+HISTORY_IMAGE = "https://t.me/prooflelo1/139?single"
 REFER_IMAGE = "https://t.me/prooflelo1/17"
-ADMIN_IMAGE = "https://t.me/prooflelo1/16"
+ADMIN_IMAGE = "https://t.me/prooflelo1/140?single"
 
 # UPI Details for QR Code
 UPI_ID = "your-upi-id@oksbi"  # Change this to your UPI ID

@@ -2,7 +2,4 @@ pyTelegramBotAPI==4.15.2
 pymongo==4.5.0
 requests==2.31.0
 python-dotenv==1.0.0
-telebot
-pymongo
-qrcode[pil]
-pip install pyTelegramBotAPI pymongo python-dotenv requests
+qrcode[pil]==7.4.2

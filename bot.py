@@ -166,13 +166,13 @@ def place_smm_order(service_id, link, quantity):
         try:
             data = response.json()
         except ValueError:
-            print(f\"SMM API returned non-JSON response: {response.text[:300]!r}\")
+            print(f"SMM API returned non-JSON response: {response.text[:300]!r}")
             return None
 
         # handle common error shapes
         if isinstance(data, dict):
             if data.get('error') or str(data.get('status')).lower() in ['error', 'failed']:
-                print(f\"SMM API reported error placing order: {data}\")
+                print(f"SMM API reported error placing order: {data}")
                 return None
 
             # try multiple keys for order id
@@ -186,11 +186,11 @@ def place_smm_order(service_id, link, quantity):
                     if key in data['data'] and data['data'][key]:
                         return str(data['data'][key])
 
-        print(f\"SMM API response did not contain order id: {data}\")
+        print(f"SMM API response did not contain order id: {data}")
         return None
 
     except Exception as e:
-        print(f\"SMM API order error: {e}\")
+        print(f"SMM API order error: {e}")
         return None
 
 def get_order_status(api_order_id):

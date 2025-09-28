@@ -5,3 +5,4 @@ python-dotenv==1.0.0
 telebot
 pymongo
 qrcode[pil]
+pip install pyTelegramBotAPI pymongo python-dotenv requests

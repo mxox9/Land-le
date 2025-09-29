@@ -1922,8 +1922,7 @@ def process_order_link(message):
     service = get_service_by_id(user_states[user_id]["service_id"])
     
     bot.send_message(user_id, f"🔢 Eɴᴛᴇʀ ǫᴜᴀɴᴛɪᴛʏ ({service['min']} - {service['max']}):")
-
-def process_order_quantity(message):
+    bot.register_next_step_handler(message, process_order_quantity)
     """Process order quantity"""
     user_id = message.chat.id
     

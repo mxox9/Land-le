@@ -52,6 +52,7 @@ def update_order_statuses():
                                 }
                             }
                         )
+                        print(f"Updated order {order['order_id']} status to {new_status}")
             
             time.sleep(300)  # Check every 5 minutes
         except Exception as e:

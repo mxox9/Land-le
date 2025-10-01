@@ -28,7 +28,7 @@ SERVICES = {
             "active": True
         },
         {
-            "id": "insta_views_temp_3",  # Replace with real SMM panel service ID
+            "id": "4901",  # Replace with real SMM panel service ID
             "category": "Iɴsᴛᴀɢʀᴀᴍ",
             "name": "👁 Iɴsᴛᴀ Vɪᴇᴡs",
             "description": "Iɴsᴛᴀɢʀᴀᴍ ʀᴇᴇʟs ᴀɴᴅ ᴠɪᴅᴇᴏ ᴠɪᴇᴡs",

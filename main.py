@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import modules
-from database import init_database
+from database import init_database, orders_collection
 from admin_handlers import setup_admin_handlers
 from user_handlers import setup_user_handlers
 from utils import style_text
@@ -36,12 +36,11 @@ except Exception as e:
 # Background task for order status updates
 def update_order_statuses():
     """Background task to update order statuses"""
-    from database import orders_collection
     from smm_api import check_smm_order
     
     while True:
         try:
-            if not orders_collection:
+            if orders_collection is None:
                 print("❌ Orders collection not available - skipping status update")
                 time.sleep(300)
                 continue

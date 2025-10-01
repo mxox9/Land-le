@@ -1,4 +1,2 @@
-pyTelegramBotAPI
-requests
-qrcode[pil]
-Pillow
+pyTelegramBotAPI==4.15.2
+requests==2.31.0

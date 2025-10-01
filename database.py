@@ -5,6 +5,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Initialize collections as None initially
+users_collection = None
+orders_collection = None
+deposits_collection = None
+admin_logs_collection = None
+config_collection = None
+settings_collection = None
+
 # MongoDB connection with error handling
 try:
     client = MongoClient(os.getenv('MONGO_URI', 'mongodb+srv://saifulmolla79088179_db_user:17gNrX0pC3bPqVaG@cluster0.fusvqca.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0'), serverSelectionTimeoutMS=5000)
@@ -14,7 +22,7 @@ try:
     client.admin.command('ismaster')
     print("✅ MongoDB connected successfully")
     
-    # Collections
+    # Initialize collections
     users_collection = db.users
     orders_collection = db.orders
     deposits_collection = db.deposits
@@ -24,17 +32,11 @@ try:
     
 except Exception as e:
     print(f"❌ MongoDB connection error: {e}")
-    # Fallback to local storage or exit gracefully
-    users_collection = None
-    orders_collection = None
-    deposits_collection = None
-    admin_logs_collection = None
-    config_collection = None
-    settings_collection = None
+    print("🔄 Running in limited mode without database")
 
 def init_database():
     """Initialize database with default settings"""
-    if not users_collection:
+    if users_collection is None:
         print("❌ Database not available - running in limited mode")
         return
     
@@ -64,7 +66,7 @@ def init_database():
 
 def get_user(user_id):
     """Get user by ID, create if not exists"""
-    if not users_collection:
+    if users_collection is None:
         # Fallback for when database is not available
         return {
             "user_id": user_id,
@@ -91,7 +93,7 @@ def get_user(user_id):
 
 def update_user_balance(user_id, points_change, is_deposit=False, is_spent=False):
     """Update user balance"""
-    if not users_collection:
+    if users_collection is None:
         return 0  # Return 0 balance if DB not available
     
     user = get_user(user_id)
@@ -107,7 +109,7 @@ def update_user_balance(user_id, points_change, is_deposit=False, is_spent=False
 
 def create_order(user_id, service_data, link, quantity, cost_points, api_order_id=None):
     """Create new order"""
-    if not orders_collection:
+    if orders_collection is None:
         return None  # Return None if DB not available
     
     import random
@@ -134,7 +136,7 @@ def create_order(user_id, service_data, link, quantity, cost_points, api_order_i
 
 def get_user_orders(user_id, limit=10):
     """Get user orders"""
-    if not orders_collection:
+    if orders_collection is None:
         return []  # Return empty list if DB not available
     
     return list(orders_collection.find(
@@ -143,14 +145,14 @@ def get_user_orders(user_id, limit=10):
 
 def get_order_by_id(order_id):
     """Get order by order ID"""
-    if not orders_collection:
+    if orders_collection is None:
         return None  # Return None if DB not available
     
     return orders_collection.find_one({"order_id": order_id})
 
 def log_admin_action(admin_id, action, details):
     """Log admin actions"""
-    if not admin_logs_collection:
+    if admin_logs_collection is None:
         return  # Skip logging if DB not available
     
     admin_logs_collection.insert_one({
@@ -162,14 +164,14 @@ def log_admin_action(admin_id, action, details):
 
 def get_bot_settings():
     """Get bot settings"""
-    if not settings_collection:
+    if settings_collection is None:
         return {"accepting_orders": True}  # Default settings if DB not available
     
     return settings_collection.find_one({"_id": "bot_settings"})
 
 def set_bot_accepting_orders(status):
     """Set bot accepting orders status"""
-    if not settings_collection:
+    if settings_collection is None:
         return  # Skip if DB not available
     
     settings_collection.update_one(
@@ -185,19 +187,19 @@ def is_bot_accepting_orders():
 
 def get_total_users():
     """Get total users count"""
-    if not users_collection:
+    if users_collection is None:
         return 0
     return users_collection.count_documents({})
 
 def get_total_orders():
     """Get total orders count"""
-    if not orders_collection:
+    if orders_collection is None:
         return 0
     return orders_collection.count_documents({})
 
 def get_total_deposits():
     """Get total deposits amount"""
-    if not deposits_collection:
+    if deposits_collection is None:
         return 0
     
     result = deposits_collection.aggregate([

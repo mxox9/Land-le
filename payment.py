@@ -1,65 +1,118 @@
+import random
 import requests
-import qrcode
-import io
-from config import Config
-from utils import generate_utr, style_text
+from config import DEPOSIT_IMAGE, users, deposits, ADMIN_IDS, CHANNEL_ID
+import telebot
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-class PaymentSystem:
-    @staticmethod
-    def generate_upi_link(amount: float, utr: str) -> str:
-        """Gᴇɴᴇʀᴀᴛᴇ UPI ᴘᴀʏᴍᴇɴᴛ ʟɪɴᴋ"""
-        # This would be your actual UPI ID - using placeholder
-        upi_id = "your-merchant@upi"
-        return f"upi://pay?pa={upi_id}&pn=Merchant&am={amount}&cu=INR&tn=UTR{utr}"
-    
-    @staticmethod
-    def generate_qr_code(upi_link: str) -> bytes:
-        """Gᴇɴᴇʀᴀᴛᴇ QR ᴄᴏᴅᴇ ᴜsɪɴɢ ǫʀᴄᴏᴅᴇ ʟɪʙʀᴀʀʏ"""
-        qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(upi_link)
-        qr.make(fit=True)
+def generate_utr():
+    """Generate 12-digit UTR number"""
+    return ''.join([str(random.randint(0, 9)) for _ in range(12)])
+
+def create_upi_link(amount, utr):
+    """Create UPI payment link"""
+    # This is a simplified version - in production, use real UPI parameters
+    return f"upi://pay?pa=merchant@upi&pn=Merchant&am={amount}&tn=Deposit-{utr}"
+
+def generate_qr_code(amount, utr):
+    """Generate QR code for UPI payment using QuickChart"""
+    upi_link = create_upi_link(amount, utr)
+    qr_url = f"https://quickchart.io/qr?text={upi_link}&size=200"
+    return qr_url
+
+def handle_deposit(bot, message):
+    """Handle deposit request"""
+    try:
+        amount = float(message.text)
+        if amount < 10:
+            bot.send_message(message.chat.id, "❌ Mɪɴɪᴍᴜᴍ ᴅᴇᴘᴏsɪᴛ ɪs ₹10")
+            return
         
-        img = qr.make_image(fill_color="black", back_color="white")
-        img_byte_arr = io.BytesIO()
-        img.save(img_byte_arr, format='PNG')
-        return img_byte_arr.getvalue()
-    
-    @staticmethod
-    def verify_payment(utr: str, amount: float) -> bool:
-        """Vᴇʀɪғʏ ᴘᴀʏᴍᴇɴᴛ ᴡɪᴛʜ Aᴜᴛᴏᴅᴇᴘ API"""
-        try:
-            # Mock API call - replace with actual Autodep API
-            headers = {
-                'Authorization': f'Bearer {Config.AUTODEP_API_KEY}',
-                'X-Merchant-Key': Config.AUTODEP_MERCHANT_KEY
-            }
-            
-            data = {
-                'utr': utr,
-                'amount': amount
-            }
-            
-            # response = requests.post('https://api.autodep.com/verify', headers=headers, json=data)
-            # return response.json().get('status') == 'success'
-            
-            # For demo purposes, assume payment is successful
-            return True
-            
-        except Exception as e:
-            print(f"Payment verification error: {e}")
-            return False
-
-def create_deposit_message(amount: float, utr: str, qr_image: bytes) -> tuple:
-    """Cʀᴇᴀᴛᴇ ᴅᴇᴘᴏsɪᴛ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ QR ᴄᴏᴅᴇ"""
-    caption = style_text(f"""
+        utr = generate_utr()
+        qr_url = generate_qr_code(amount, utr)
+        
+        # Store deposit info
+        user_id = message.from_user.id
+        deposits[utr] = {
+            'user_id': user_id,
+            'amount': amount,
+            'status': 'pending',
+            'timestamp': message.date
+        }
+        
+        caption = f"""
 💰 Dᴇᴘᴏsɪᴛ Rᴇǫᴜᴇsᴛ
 
-Aᴍᴏᴜɴᴛ: ₹{amount}
-UTR: {utr}
+💳 Aᴍᴏᴜɴᴛ: ₹{amount:,.2f}
+🔢 UTR: {utr}
 
-Sᴄᴀɴ ᴛʜᴇ QR ᴄᴏᴅᴇ ᴏʀ ᴜsᴇ ᴜᴘɪ ʟɪɴᴋ ᴛᴏ ᴘᴀʏ.
+Sᴄᴀɴ ᴛʜᴇ QR ᴄᴏᴅᴇ ᴏʀ ᴜsᴇ UPI ᴛᴏ ᴄᴏᴍᴘʟᴇᴛᴇ ᴘᴀʏᴍᴇɴᴛ.
+        """.strip()
+        
+        keyboard = InlineKeyboardMarkup()
+        keyboard.add(
+            InlineKeyboardButton("✅ Pᴀɪᴅ", callback_data=f"paid_{utr}"),
+            InlineKeyboardButton("🔙 Bᴀᴄᴋ", callback_data="back_to_main")
+        )
+        
+        bot.send_photo(
+            message.chat.id,
+            qr_url,
+            caption=caption,
+            reply_markup=keyboard
+        )
+        
+    except ValueError:
+        bot.send_message(message.chat.id, "❌ Pʟᴇᴀsᴇ ᴇɴᴛᴇʀ ᴀ ᴠᴀʟɪᴅ ᴀᴍᴏᴜɴᴛ")
 
-Aғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ, ᴄʟɪᴄᴋ "Pᴀɪᴅ ✅" ʙᴜᴛᴛᴏɴ.
-""")
-    
-    return qr_image, caption
+def check_payment_status(bot, call, utr):
+    """Check payment status using Autodep API (simulated)"""
+    # Simulate API call - replace with real Autodep API integration
+    try:
+        # This is where you'd integrate with Autodep API
+        # response = requests.get(f"https://api.autodep.com/check/{utr}", headers={"Authorization": AUTODEP_API_KEY})
+        # For demo, we'll simulate success after 2 seconds
+        import time
+        time.sleep(2)
+        
+        # Simulate payment verification (80% success rate for demo)
+        if random.random() < 0.8:
+            deposit = deposits.get(utr)
+            if deposit and deposit['status'] == 'pending':
+                user_id = deposit['user_id']
+                amount = deposit['amount']
+                
+                # Update user balance
+                if user_id not in users:
+                    users[user_id] = {'balance': 0, 'deposits': 0, 'spent': 0}
+                
+                users[user_id]['balance'] += amount
+                users[user_id]['deposits'] += amount
+                deposits[utr]['status'] = 'completed'
+                
+                # Notify user
+                bot.send_message(
+                    user_id,
+                    f"✅ Pᴀʏᴍᴇɴᴛ Cᴏɴғɪʀᴍᴇᴅ!\n💰 ₹{amount:,.2f} ʜᴀs ʙᴇᴇɴ ᴀᴅᴅᴇᴅ ᴛᴏ ʏᴏᴜʀ ʙᴀʟᴀɴᴄᴇ."
+                )
+                
+                # Notify admin
+                for admin_id in ADMIN_IDS:
+                    bot.send_message(
+                        admin_id,
+                        f"💰 Nᴇᴡ Dᴇᴘᴏsɪᴛ\n👤 Usᴇʀ: {user_id}\n💳 Aᴍᴏᴜɴᴛ: ₹{amount:,.2f}\n🔢 UTR: {utr}"
+                    )
+                
+                # Notify channel
+                if CHANNEL_ID:
+                    bot.send_message(
+                        CHANNEL_ID,
+                        f"💰 Nᴇᴡ Dᴇᴘᴏsɪᴛ Rᴇᴄᴇɪᴠᴇᴅ!\n💳 Aᴍᴏᴜɴᴛ: ₹{amount:,.2f}"
+                    )
+                
+            else:
+                bot.answer_callback_query(call.id, "❌ Pᴀʏᴍᴇɴᴛ ɴᴏᴛ ғᴏᴜɴᴅ ᴏʀ ᴀʟʀᴇᴀᴅʏ ᴘʀᴏᴄᴇssᴇᴅ")
+        else:
+            bot.answer_callback_query(call.id, "❌ Pᴀʏᴍᴇɴᴛ ɴᴏᴛ ʏᴇᴛ ᴠᴇʀɪғɪᴇᴅ. Pʟᴇᴀsᴇ ᴛʀʏ ᴀɢᴀɪɴ ɪɴ 2 ᴍɪɴᴜᴛᴇs.")
+            
+    except Exception as e:
+        bot.answer_callback_query(call.id, "❌ Eʀʀᴏʀ ᴄʜᴇᴄᴋɪɴɢ ᴘᴀʏᴍᴇɴᴛ sᴛᴀᴛᴜs")

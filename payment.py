@@ -1,71 +1,65 @@
 import requests
-import random
-import string
-from datetime import datetime
-from database import deposits_collection
-from utils import style_text
+import qrcode
+import io
+from config import Config
+from utils import generate_utr, style_text
 
-def generate_transaction_id():
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
-
-def create_payment(amount, user_id):
-    """Create payment record"""
-    transaction_id = generate_transaction_id()
+class PaymentSystem:
+    @staticmethod
+    def generate_upi_link(amount: float, utr: str) -> str:
+        """Gᴇɴᴇʀᴀᴛᴇ UPI ᴘᴀʏᴍᴇɴᴛ ʟɪɴᴋ"""
+        # This would be your actual UPI ID - using placeholder
+        upi_id = "your-merchant@upi"
+        return f"upi://pay?pa={upi_id}&pn=Merchant&am={amount}&cu=INR&tn=UTR{utr}"
     
-    # UPI Details (you should replace with your actual UPI ID)
-    upi_id = "smmservices@okaxis"  # Change this to your actual UPI ID
+    @staticmethod
+    def generate_qr_code(upi_link: str) -> bytes:
+        """Gᴇɴᴇʀᴀᴛᴇ QR ᴄᴏᴅᴇ ᴜsɪɴɢ ǫʀᴄᴏᴅᴇ ʟɪʙʀᴀʀʏ"""
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr.add_data(upi_link)
+        qr.make(fit=True)
+        
+        img = qr.make_image(fill_color="black", back_color="white")
+        img_byte_arr = io.BytesIO()
+        img.save(img_byte_arr, format='PNG')
+        return img_byte_arr.getvalue()
     
-    # Calculate points (1₹ = 100 points)
-    points = int(amount * 100)
+    @staticmethod
+    def verify_payment(utr: str, amount: float) -> bool:
+        """Vᴇʀɪғʏ ᴘᴀʏᴍᴇɴᴛ ᴡɪᴛʜ Aᴜᴛᴏᴅᴇᴘ API"""
+        try:
+            # Mock API call - replace with actual Autodep API
+            headers = {
+                'Authorization': f'Bearer {Config.AUTODEP_API_KEY}',
+                'X-Merchant-Key': Config.AUTODEP_MERCHANT_KEY
+            }
+            
+            data = {
+                'utr': utr,
+                'amount': amount
+            }
+            
+            # response = requests.post('https://api.autodep.com/verify', headers=headers, json=data)
+            # return response.json().get('status') == 'success'
+            
+            # For demo purposes, assume payment is successful
+            return True
+            
+        except Exception as e:
+            print(f"Payment verification error: {e}")
+            return False
+
+def create_deposit_message(amount: float, utr: str, qr_image: bytes) -> tuple:
+    """Cʀᴇᴀᴛᴇ ᴅᴇᴘᴏsɪᴛ ᴍᴇssᴀɢᴇ ᴡɪᴛʜ QR ᴄᴏᴅᴇ"""
+    caption = style_text(f"""
+💰 Dᴇᴘᴏsɪᴛ Rᴇǫᴜᴇsᴛ
+
+Aᴍᴏᴜɴᴛ: ₹{amount}
+UTR: {utr}
+
+Sᴄᴀɴ ᴛʜᴇ QR ᴄᴏᴅᴇ ᴏʀ ᴜsᴇ ᴜᴘɪ ʟɪɴᴋ ᴛᴏ ᴘᴀʏ.
+
+Aғᴛᴇʀ ᴘᴀʏᴍᴇɴᴛ, ᴄʟɪᴄᴋ "Pᴀɪᴅ ✅" ʙᴜᴛᴛᴏɴ.
+""")
     
-    # Save deposit record
-    deposit_data = {
-        "deposit_id": transaction_id,
-        "user_id": user_id,
-        "amount": amount,
-        "points": points,
-        "status": "pending",
-        "upi_id": upi_id,
-        "created_at": datetime.now()
-    }
-    deposits_collection.insert_one(deposit_data)
-    
-    return {
-        "transaction_id": transaction_id,
-        "upi_id": upi_id,
-        "amount": amount,
-        "points": points
-    }
-
-def verify_payment(transaction_id):
-    """Verify payment - in real implementation, integrate with payment gateway"""
-    # For demo purposes, we'll assume payment is verified
-    # In real implementation, check with payment API
-    deposit = deposits_collection.find_one({"deposit_id": transaction_id})
-    if deposit:
-        deposits_collection.update_one(
-            {"deposit_id": transaction_id},
-            {"$set": {"status": "completed"}}
-        )
-        return True
-    return False
-
-def get_upi_payment_text(amount, upi_id):
-    """Generate UPI payment instructions"""
-    return style_text(f"""
-💵 UPI Payment Instructions
-
-💰 Amount: ₹{amount}
-📱 UPI ID: {upi_id}
-
-📋 How to Pay:
-1. Open your UPI app (Google Pay, PhonePe, Paytm, etc.)
-2. Enter UPI ID: {upi_id}
-3. Enter amount: ₹{amount}
-4. Add note: "SMM Services"
-5. Complete payment
-
-🔍 After payment, click "I Have Paid" below.
-
-📞 Contact support if you face any issues.
-    """)
+    return qr_image, caption

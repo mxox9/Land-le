@@ -11,7 +11,7 @@ from services import SERVICES, get_services_by_category, get_all_categories, get
 from utils import style_text, generate_qr_code, generate_order_id, format_currency
 
 # Load environment variables
-BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGoXnNg90jqvcC1X1fVo_qKV8Y0eHjDAZg')
+BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAFyR1xAz08jM664fJ4wUCsxpzg0WVS3Sw0')
 ADMIN_IDS = [int(x.strip()) for x in os.getenv('ADMIN_IDS', '6052975324').split(',')]
 CHANNEL_ID = os.getenv('CHANNEL_ID', '@prooflelo1')
 SMM_API_URL = os.getenv('SMM_API_URL', 'https://mysmmapi.com/api/v2')

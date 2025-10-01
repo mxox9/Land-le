@@ -1,3 +1,4 @@
-pyTelegramBotAPI==4.15.2
-requests==2.31.0
-python-dotenv==1.0.0
+pyTelegramBotAPI
+requests
+qrcode[pil]
+Pillow

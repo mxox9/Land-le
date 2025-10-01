@@ -1,1 +1,5 @@
-pip install pyTelegramBotAPI requests qrcode[pil]
+pyTelegramBotAPI==4.15.2
+requests==2.31.0
+qrcode[pil]==7.4.2
+Pillow==10.0.1
+python-dotenv==1.0.0

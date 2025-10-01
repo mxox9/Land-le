@@ -14,8 +14,8 @@ from utils import style_text, generate_qr_code, generate_order_id, format_curren
 BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAFyR1xAz08jM664fJ4wUCsxpzg0WVS3Sw0')
 ADMIN_IDS = [int(x.strip()) for x in os.getenv('ADMIN_IDS', '6052975324').split(',')]
 CHANNEL_ID = os.getenv('CHANNEL_ID', '@prooflelo1')
-SMM_API_URL = os.getenv('SMM_API_URL', 'https://mysmmapi.com/api/v2')
-SMM_API_KEY = os.getenv('SMM_API_KEY', 'a9bbe2f7d1a748b62cf5d1e195d06a165e3cc36d')
+SMM_API_URL = os.getenv('SMM_API_URL', 'https://smm-jupiter.com/api/v2')
+SMM_API_KEY = os.getenv('SMM_API_KEY', '1d64f2c11f9facdfe6c96e140173dcbead76bffb')
 PROOF_CHANNEL = "@prooflelo1"
 BOT_USERNAME = "@prank_ox_bot"
 

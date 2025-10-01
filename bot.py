@@ -7,8 +7,8 @@ from datetime import datetime
 
 # Bot Configuration
 BOT_TOKEN = "8052955693:AAFyR1xAz08jM664fJ4wUCsxpzg0WVS3Sw0"
-SMM_API_URL = "https://mysmmapi.com/api/v2"
-SMM_API_KEY = "a9bbe2f7d1a748b62cf5d1e195d06a165e3cc36d"
+SMM_API_URL = "https://smm-jupiter.com/api/v2"
+SMM_API_KEY = "1d64f2c11f9facdfe6c96e140173dcbead76bffb"
 
 # Initialize bot
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -17,7 +17,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 SERVICES = [
     {
         "name": "📸 Insta Views",
-        "service_id": "4901",
+        "service_id": "13685",
         "price": 40,
         "unit": 1000,
         "min": 100,

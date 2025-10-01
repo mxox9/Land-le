@@ -1,6 +1,4 @@
 # utils.py - Helper functions
-import qrcode
-import io
 import random
 from datetime import datetime
 
@@ -23,25 +21,9 @@ def style_text(text):
     return ' '.join(styled_words)
 
 def generate_qr_code(amount, upi_id="your-upi@oksbi"):
-    """Generate QR code for UPI payment"""
-    upi_url = f"upi://pay?pa={upi_id}&pn=SMM%20Services&am={amount}&cu=INR"
-    
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(upi_url)
-    qr.make(fit=True)
-    
-    img = qr.make_image(fill_color="black", back_color="white")
-    
-    img_bytes = io.BytesIO()
-    img.save(img_bytes, format='PNG')
-    img_bytes.seek(0)
-    
-    return img_bytes
+    """Return a dummy QR code image (skip actual qrcode module)"""
+    # Aap apna QR image Telegram ya Imgur pe upload karke link paste kar sakte ho
+    return "https://t.me/prooflelo1/136?single"
 
 def generate_order_id():
     """Generate unique order ID"""

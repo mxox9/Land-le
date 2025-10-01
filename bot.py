@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Bot Configuration
 BOT_TOKEN = "8052955693:AAFyR1xAz08jM664fJ4wUCsxpzg0WVS3Sw0"
-SMM_API_URL = "https://mysmmapi.com/api/v2?"
+SMM_API_URL = "https://mysmmapi.com/api/v2"
 SMM_API_KEY = "a9bbe2f7d1a748b62cf5d1e195d06a165e3cc36d"
 
 # Initialize bot

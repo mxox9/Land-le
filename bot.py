@@ -9,19 +9,19 @@ import threading
 from urllib.parse import quote
 
 # Bot configuration
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
+BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
 ADMIN_ID = 6052975324
 CHANNEL_ID = -1002587  # optional channel
 ADMIN_IDS = [6052975324]  # Replace with your admin ID
-PROOF_CHANNEL = "@your_proof_channel"  # Replace with your channel
+PROOF_CHANNEL = "@prooflelo1"  # Replace with your channel
 SUPPORT_LINK = "https://t.me/your_support"  # Replace with your support
 BOT_LINK = "https://t.me/your_bot"  # Replace with your bot link
 
 # API Keys
 AUTODEP_API_KEY = "LY81vEV7"
 AUTODEP_MERCHANT_KEY = "WYcmQI71591891985230"
-SMM_API_KEY = "YOUR_SMM_API_KEY"
-SMM_API_URL = "https://example.com/api/v2"  # Replace with actual SMM API
+SMM_API_KEY = "c33fb3166621856879b2e486b99a30f0c442ac92"
+SMM_API_URL = "https://smm-jupiter.com/api/v2"  # Replace with actual SMM API
 
 # Initialize bot
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -81,7 +81,7 @@ ADMIN_IMAGE = "https://t.me/prooflelo1/140?single"
 SERVICES = {
     "Instagram": {
         "📸 Instagram Likes": {"id": 101, "price": 30, "min": 100, "max": 10000, "unit": 1000},
-        "👁 Instagram Views": {"id": 102, "price": 50, "min": 100, "max": 50000, "unit": 1000},
+        "👁 Instagram Views": {"id": 13685, "price": 50, "min": 100, "max": 50000, "unit": 1000},
         "👤 Instagram Followers": {"id": 103, "price": 80, "min": 100, "max": 10000, "unit": 1000}
     },
     "Facebook": {

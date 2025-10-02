@@ -13,8 +13,8 @@ from datetime import datetime, timedelta
 BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
 ADMIN_ID = 6052975324
 CHANNEL_ID = -1002587  # Replace with your channel ID
-PROOF_CHANNEL = "@your_proof_channel"  # Replace with your proof channel
-SUPPORT_LINK = "https://t.me/your_support"  # Replace with your support
+PROOF_CHANNEL = "@prooflelo1"  # Replace with your proof channel
+SUPPORT_LINK = "https://wa.me/+639941532149"  # Replace with your support
 
 # API Keys
 AUTODEP_API_KEY = "LY81vEV7"
@@ -69,10 +69,10 @@ def style_text(text):
 # Services and Categories (with styled text and emojis)
 services = {
     "instagram": {
-        "name": "📸 " + style_text("Instagram"),
+        "name": "📸 " + style_text("Iɴsᴛᴀɢʀᴀᴍ"),
         "services": {
             1: {"name": "❤️ " + style_text("Instagram Likes"), "rate": 50, "min": 100, "max": 100000, "unit": 1000, "api_id": 1},
-            2: {"name": "👀 " + style_text("Instagram Views"), "rate": 50, "min": 100, "max": 100000, "unit": 1000, "api_id": 2},
+            2: {"name": "👀 " + style_text("Instagram Views"), "rate": 1, "min": 100, "max": 100000, "unit": 1000, "api_id": 13685},
             3: {"name": "👥 " + style_text("Instagram Followers"), "rate": 100, "min": 50, "max": 50000, "unit": 1000, "api_id": 3}
         }
     },

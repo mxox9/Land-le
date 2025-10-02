@@ -459,8 +459,14 @@ def callback_handler(call):
             service_id = int(parts[3])
             start_change_api(call, category, service_id)
             
+        @bot.callback_query_handler(func=lambda call: True)
+def callback_handler(call):
+    global bot_enabled   # ✔️ यह सबसे ऊपर होना चाहिए
+    
+    try:
+        user_id = call.from_user.id
+        ...
         elif call.data == "disable_bot":
-            global bot_enabled
             bot_enabled = False
             bot.answer_callback_query(call.id, "🔴 " + style_text("Bot has been disabled"))
             admin_bot_control(call)

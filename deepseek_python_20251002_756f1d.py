@@ -8,7 +8,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeybo
 from urllib.parse import quote
 
 # Bot Configuration
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
+BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
 ADMIN_ID = 6052975324
 CHANNEL_ID = -1002587  # Replace with your channel ID
 PROOF_CHANNEL = "@your_proof_channel"  # Replace with your proof channel

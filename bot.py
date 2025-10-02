@@ -71,11 +71,11 @@ def style_text(text):
 def init_services():
     default_services = {
         "instagram": {
-            "name": "📸 " + style_text("Instagram"),
+            "name": "📸 " + style_text("Iɴsᴛᴀɢʀᴀᴍ"),
             "services": {
-                1: {"name": "❤️ " + style_text("Instagram Likes"), "rate": 50, "min": 100, "max": 100000, "unit": 1000, "api_id": 1},
-                2: {"name": "👀 " + style_text("Instagram Views"), "rate": 50, "min": 100, "max": 100000, "unit": 1000, "api_id": 2},
-                3: {"name": "👥 " + style_text("Instagram Followers"), "rate": 100, "min": 50, "max": 50000, "unit": 1000, "api_id": 3}
+                1: {"name": "❤️ " + style_text("Iɴsᴛᴀ Lɪᴋᴇs"), "rate": 50, "min": 100, "max": 100000, "unit": 1000, "api_id": 1},
+                2: {"name": "👀 " + style_text("Iɴsᴛᴀ Vɪᴇᴡ's"), "rate": 50, "min": 100, "max": 100000, "unit": 1000, "api_id": 13685},
+                3: {"name": "👥 " + style_text("Iɴsᴛᴀ Fᴏʟʟᴏᴡᴇʀs"), "rate": 100, "min": 50, "max": 50000, "unit": 1000, "api_id": 3}
             }
         },
         "facebook": {

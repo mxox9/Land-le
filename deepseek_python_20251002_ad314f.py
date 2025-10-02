@@ -8,11 +8,11 @@ import threading
 from datetime import datetime
 
 # Bot Configuration
-BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGoXnNg90jqvcC1X1fVo_qKV8Y0eHjDAZg')
+BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw')
 ADMIN_IDS = [int(x.strip()) for x in os.getenv('ADMIN_IDS', '6052975324').split(',')]
 CHANNEL_ID = os.getenv('CHANNEL_ID', '@prooflelo1')
-SMM_API_URL = os.getenv('SMM_API_URL', 'https://mysmmapi.com/api/v2?')
-SMM_API_KEY = os.getenv('SMM_API_KEY', 'a9bbe2f7d1a748b62cf5d1e195d06a165e3cc36d')
+SMM_API_URL = os.getenv('SMM_API_URL', 'https://smm-jupiter.com/api/v2')
+SMM_API_KEY = os.getenv('SMM_API_KEY', '1d64f2c11f9facdfe6c96e140173dcbead76bffb')
 PROOF_CHANNEL = "@prooflelo1"
 BOT_USERNAME = "@prank_ox_bot"
 
@@ -44,7 +44,7 @@ SERVICES = [
     {
         "category": "instagram", 
         "name": "Insta Views",
-        "service_id": "102",
+        "service_id": "13685",
         "price_per_unit": 40,
         "unit": 1000,
         "min": 500,

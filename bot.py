@@ -9,17 +9,17 @@ import threading
 from urllib.parse import quote
 
 # Bot configuration
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
-ADMIN_IDS = [123456789]  # Replace with your admin ID
-PROOF_CHANNEL = "@your_proof_channel"  # Replace with your channel
-SUPPORT_LINK = "https://t.me/your_support"  # Replace with your support
-BOT_LINK = "https://t.me/your_bot"  # Replace with your bot link
+BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
+ADMIN_IDS = [6052975324]  # Replace with your admin ID
+PROOF_CHANNEL = "@prooflelo1"  # Replace with your channel
+SUPPORT_LINK = "49139ecf3b7e00245b063f962ce2eabf46c914b5"  # Replace with your support
+BOT_LINK = "https://t.me/prank_ox_bot"  # Replace with your bot link
 
 # API Keys
 AUTODEP_API_KEY = "YOUR_AUTODEP_API_KEY"
 AUTODEP_MERCHANT_KEY = "YOUR_MERCHANT_KEY"
-SMM_API_KEY = "YOUR_SMM_API_KEY"
-SMM_API_URL = "https://example.com/api/v2"  # Replace with actual SMM API
+SMM_API_KEY = "https://smm-jupiter.com/api/v2"
+SMM_API_URL = "https://smm-jupiter.com/api/v2"  # Replace with actual SMM API
 
 # Initialize bot
 bot = telebot.TeleBot(BOT_TOKEN)

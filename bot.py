@@ -75,7 +75,7 @@ services = {
         "name": style_text("Facebook"), 
         "services": {
             4: {"name": style_text("Facebook Likes"), "rate": 40, "min": 100, "max": 100000, "unit": 1000, "api_id": 4},
-            5: {"name": style_text("Facebook Views"), "rate": 35, "min": 100, "max": 100000, "unit": 1000, "api_id": 5},
+            5: {"name": style_text("Facebook Views"), "rate": 35, "min": 100, "max": 100000, "unit": 1000, "api_id": 13685},
             6: {"name": style_text("Facebook Followers"), "rate": 80, "min": 50, "max": 50000, "unit": 1000, "api_id": 6}
         }
     },

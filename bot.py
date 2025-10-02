@@ -24,8 +24,8 @@ BOT_TOKEN = os.getenv('BOT_TOKEN', '8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLx
 MONGO_URI = os.getenv('MONGO_URI', 'mongodb+srv://saifulmolla79088179_db_user:17gNrX0pC3bPqVaG@cluster0.fusvqca.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0')
 ADMIN_IDS = [int(x.strip()) for x in os.getenv('ADMIN_IDS', '6052975324').split(',')]
 CHANNEL_ID = os.getenv('CHANNEL_ID', '@prooflelo1')
-SMM_API_URL = os.getenv('SMM_API_URL', 'https://mysmmapi.com/api/v2?')
-SMM_API_KEY = os.getenv('SMM_API_KEY', 'a9bbe2f7d1a748b62cf5d1e195d06a165e3cc36d')
+SMM_API_URL = os.getenv('SMM_API_URL', 'https://smm-jupiter.com/api/v2')
+SMM_API_KEY = os.getenv('SMM_API_KEY', 'c33fb3166621856879b2e486b99a30f0c442ac92')
 PROOF_CHANNEL = "https://t.me/prooflelo1"
 BOT_USERNAME = "@prank_ox_bot"
 

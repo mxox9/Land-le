@@ -11,7 +11,7 @@ from urllib.parse import quote
 BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
 ADMIN_ID = 6052975324
 CHANNEL_ID = -1002587  # Replace with your channel ID
-PROOF_CHANNEL = "@your_proof_channel"  # Replace with your proof channel
+PROOF_CHANNEL = "@prooflelo1"  # Replace with your proof channel
 SUPPORT_LINK = "https://t.me/your_support"  # Replace with your support
 
 # API Keys

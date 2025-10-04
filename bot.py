@@ -292,6 +292,10 @@ def callback_handler(call):
             bot.answer_callback_query(call.id, "🔧 " + style_text("Bot is currently under maintenance."))
             return
             
+        if is_user_banned(message.from_user.id):
+            bot.send_message(message.chat.id, "🚫 " + style_text("You are banned from using this bot."))
+            return
+            
         init_user(message.from_user.id)
         
         caption = "👋 " + style_text("""

@@ -348,6 +348,8 @@ Manage all bot operations from here
 # Callback Query Handler
 @bot.callback_query_handler(func=lambda call: True)
 def callback_handler(call):
+    global bot_enabled  # ✅ सबसे ऊपर डाल दिया गया
+
     try:
         user_id = call.from_user.id
         
@@ -459,7 +461,6 @@ def callback_handler(call):
             start_change_api(call, category, service_id)
             
         elif call.data == "disable_bot":
-            global bot_enabled
             bot_enabled = False
             bot.answer_callback_query(call.id, "🔴 " + style_text("Bot has been disabled"))
             admin_bot_control(call)
@@ -475,7 +476,6 @@ def callback_handler(call):
             bot.answer_callback_query(call.id, "❌ " + style_text("An error occurred. Please try again."))
         except:
             pass
-
 # Deposit Flow
 def show_deposit(call):
     try:

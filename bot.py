@@ -296,14 +296,12 @@ def start_command(message):
         init_user(message.from_user.id)
         
         caption = "👋 " + style_text("""
-Welcome to SMM Bot
+Welcome to Next Grow Bot
 
-🌟 Your Trusted SMM Panel
+🌟 Your Trusted Growth Bot
 
-✨ Features:
-⚡ Instant Start
-🎯 High Quality Services
-🛡️ 24/7 Support
+🛡️ 24/7 Support &
+🚨 Refund Available 
 
 🚀 Start Growing Your Social Media Now!
         """)
@@ -635,8 +633,8 @@ Services Menu
         # ✅ Define categories (same as in init_services)
         categories = {
             "init_services": "📸 " + style_text("Instagram"),
-            "facebook": "📘 " + style_text("Facebook"),
-            "youtube": "📺 " + style_text("YouTube"),
+            "instagram": "📘 " + style_text("Facebook"),
+            "default_services": "📺 " + style_text("YouTube"),
             "telegram": "✈️ " + style_text("Telegram")
         }
 

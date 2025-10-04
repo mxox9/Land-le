@@ -634,7 +634,7 @@ Services Menu
 
         # ✅ Define categories (same as in init_services)
         categories = {
-            "instagram": "📸 " + style_text("Instagram"),
+            "init_services": "📸 " + style_text("Instagram"),
             "facebook": "📘 " + style_text("Facebook"),
             "youtube": "📺 " + style_text("YouTube"),
             "telegram": "✈️ " + style_text("Telegram")

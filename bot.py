@@ -623,6 +623,7 @@ def check_transaction(call):
         bot.answer_callback_query(call.id, "❌ " + style_text("Error checking transaction. Please try again."), show_alert=True)
 
 # Order Flow
+# Order Flow
 def show_categories(call):
     try:
         caption = "🛒 " + style_text("""
@@ -630,7 +631,25 @@ Services Menu
 
 🎯 Choose a category to start ordering:
         """)
-        
+
+        # ✅ Define categories (same as in init_services)
+        categories = {
+            "instagram": "📸 " + style_text("Instagram"),
+            "facebook": "📘 " + style_text("Facebook"),
+            "youtube": "📺 " + style_text("YouTube"),
+            "telegram": "✈️ " + style_text("Telegram")
+        }
+
+        keyboard = InlineKeyboardMarkup(row_width=2)
+
+        # Add each category as a button
+        for key, name in categories.items():
+            keyboard.add(InlineKeyboardButton(name, callback_data=f"category_{key}"))
+
+        # Add back button
+        keyboard.add(InlineKeyboardButton("🔙 " + style_text("Back"), callback_data="land"))
+
+        # Send or edit message
         bot.edit_message_media(
             chat_id=call.message.chat.id,
             message_id=call.message.message_id,
@@ -639,8 +658,9 @@ Services Menu
                 caption=caption,
                 parse_mode='HTML'
             ),
-            reply_markup=categories_keyboard()
+            reply_markup=keyboard
         )
+
     except Exception as e:
         print(f"Show categories error: {e}")
         bot.answer_callback_query(call.id, "❌ " + style_text("Error showing categories. Please try again."))

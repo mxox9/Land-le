@@ -1109,11 +1109,11 @@ def show_account(call):
         caption = style_text(f"""
 👤 Account Information
 
-🆔 User ID: {user_id}
-💰 Balance: ₹{user['balance']:.2f}
-💳 Total Deposits: ₹{user['total_deposits']:.2f}
-🛒 Total Spent: ₹{user['total_spent']:.2f}
+💰 Balance: ₹{user.get('balance', 0):.2f}
+💳 Total Deposits: ₹{user.get('total_deposits', 0):.2f}
+🛒 Total Spent: ₹{user.get('total_spent', 0):.2f}
 📦 Total Orders: {user.get('orders_count', 0)}
+⏰ Joined: {user.get('joined_date', 'N/A')}
         """)
         
         bot.edit_message_media(

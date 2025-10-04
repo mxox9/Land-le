@@ -282,14 +282,11 @@ def admin_keyboard():
     return keyboard
 
 # Start Command
-@bot.callback_query_handler(func=lambda call: True)
-def callback_handler(call):
-    global bot_enabled  # 🟢 FIXED: global variable declared here
+@bot.message_handler(commands=['start'])
+def start_command(message):
     try:
-        user_id = call.from_user.id
-        
-        if not bot_enabled and user_id != ADMIN_ID:
-            bot.answer_callback_query(call.id, "🔧 " + style_text("Bot is currently under maintenance."))
+        if not bot_enabled and message.from_user.id != ADMIN_ID:
+            bot.send_message(message.chat.id, "🔧 " + style_text("Bot is currently under maintenance. Please try again later."))
             return
             
         if is_user_banned(message.from_user.id):

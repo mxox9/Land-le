@@ -624,18 +624,18 @@ def check_transaction(call):
 # Order Flow
 def show_categories(call):
     try:
-        caption = "🛒 " + style_text("""
+        caption = style_text("""
 Services Menu
 
-🎯 Choose a category to start ordering:
+Choose a category to start ordering:
         """)
 
-        # ✅ Define categories (same as in init_services)
+        # Define categories without emojis
         categories = {
-            "init_services": "📸 " + style_text("Instagram"),
-            "instagram": "📘 " + style_text("Facebook"),
-            "default_services": "📺 " + style_text("YouTube"),
-            "telegram": "✈️ " + style_text("Telegram")
+            "instagram": style_text("Instagram"),
+            "facebook": style_text("Facebook"),
+            "youtube": style_text("YouTube"),
+            "telegram": style_text("Telegram")
         }
 
         keyboard = InlineKeyboardMarkup(row_width=2)

@@ -10,7 +10,7 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 
 # Bot Configuration
-BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
+BOT_TOKEN = "7676279831:AAEjsdgsQGwwccw8z4W7jaZAb2e_YkbXKUY"
 ADMIN_ID = 6052975324
 CHANNEL_ID = -1003036132948
 PROOF_CHANNEL = "@prooflelo1"
@@ -32,7 +32,7 @@ orders_collection = db.orders
 refund_tracking_collection = db.refund_tracking
 
 # Image URLs
-WELCOME_IMAGE = "https://t.me/prooflelo1/372?single"
+WELCOME_IMAGE = "https://t.me/prooflelo1/487"
 SERVICE_IMAGE = "https://t.me/prooflelo1/138?single"
 DEPOSIT_IMAGE = "https://t.me/prooflelo1/136?single"
 ACCOUNT_IMAGE = "https://t.me/prooflelo1/137?single"
@@ -343,9 +343,9 @@ Welcome to Next Grow Bot
 🚀 Start Growing Your Social Media Now!
         """)
         
-        bot.send_photo(
+        bot.send_video(
             chat_id=message.chat.id,
-            photo=WELCOME_IMAGE,
+            video=WELCOME_IMAGE,
             caption=caption,
             reply_markup=main_menu_keyboard(),
             parse_mode='HTML'

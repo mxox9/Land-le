@@ -10,7 +10,7 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 
 # Bot Configuration
-BOT_TOKEN = "8052955693:AAGf3qd5VXfq1I7d0_lM0eE3YwKFuBXLxvw"
+BOT_TOKEN = "7676279831:AAG7x8SJ7tZv6jF-TMTAy6tfdpenAUdMNR4"
 ADMIN_ID = 6052975324
 CHANNEL_ID = -1003036132948
 PROOF_CHANNEL = "@prooflelo1"
@@ -40,7 +40,7 @@ HISTORY_IMAGE = "https://t.me/prooflelo1/139?single"
 HOW_TO_USE_IMAGE = "https://t.me/prooflelo1/487?single"
 ADMIN_IMAGE = "https://t.me/prooflelo1/140?single"
 TRACK_IMAGE = "https://t.me/prooflelo1/139?single"
-FORCE_JOIN_IMAGE = "https://t.me/prooflelo1/675"  # New force join image
+FORCE_JOIN_IMAGE = "https://t.me/prooflelo1/139?single"  # New force join image
 
 # Initialize bot
 bot = telebot.TeleBot(BOT_TOKEN)
